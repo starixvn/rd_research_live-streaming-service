@@ -1,0 +1,13 @@
+node_modules/
+**/dist
+*.tsbuildinfo
+coverage/
+.stryker-tmp
+reports/
+.nx/cache
+.nx/workspace-data
+*.sqlite
+.DS_Store
+bin/
+.env
+config.json

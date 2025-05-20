@@ -1,0 +1,5 @@
+{
+  "watch": ["src", "package.json"],
+  "ext": "ts",
+  "exec": "tsc --project tsconfig.production.json && node ./dist/bin.js | pino-pretty"
+}

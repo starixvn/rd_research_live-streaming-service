@@ -1,0 +1,6 @@
+POST http://localhost:5000/114_STAGING
+Content-Type: application/json
+
+{
+    "playlist": "playlist.m3u8"
+}

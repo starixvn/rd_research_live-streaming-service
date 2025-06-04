@@ -11,7 +11,7 @@ export function buildPlaylist() {
 export async function buildResolutionPlaylist(resolution: string) {
   const now = Date.now();
   const nowString = new Date(now).toISOString();
-  const nowInSecond = Math.floor(now / 3000) * 3;
+  const nowInSecond = now;
 
   return `#EXTM3U
 #EXT-X-TARGETDURATION:3
@@ -19,10 +19,9 @@ export async function buildResolutionPlaylist(resolution: string) {
 #EXT-X-MEDIA-SEQUENCE:${nowInSecond}
 #EXT-X-PROGRAM-DATE-TIME:${nowString}
 #EXT-X-KEY:METHOD=AES-128,URI="encryption.key",IV=0x00000000000000000000000000000000
+#EXT-X-DISCONTINUITY-SEQUENCE:${nowInSecond}
 #EXT-X-DISCONTINUITY
 #EXTINF:3.000,
 ${resolution}_${nowInSecond}.ts
-#EXTINF:3.000,
-${resolution}_${nowInSecond + 3}.ts
 `;
 }

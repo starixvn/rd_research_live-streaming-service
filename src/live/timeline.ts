@@ -1,58 +1,72 @@
-import { Cacheable } from "cacheable";
-import { get } from "./file.js";
+import type { Segment } from "m3u8-parser";
 
-export interface Timeline {
-  name: string;
-  time: number;
-}
-
-export interface Info {
+export interface TimelineKey {
   channel: string;
-  resolution: string;
   start: number;
-  streamServer?: string;
 }
 
-const cache = new Cacheable({ ttl: "1h" });
-
-export async function register(info: Info, timeline: Timeline[]) {
-  let startFrom = info.start;
-
-  for (const { time, name } of timeline) {
-    const timeInSecond = Math.floor(time + 1);
-
-    for (let i = 0; i < timeInSecond; i++) {
-      const timestamp = startFrom + i;
-      const key = `${info.channel}/${info.resolution}/${timestamp}`;
-
-      if (await cache.has(key)) {
-        await cache.delete(key);
-      }
-
-      cache.set(key, { name, time });
-    }
-
-    if (info.streamServer) {
-      get(`${info.streamServer}/${info.channel}/${name}`);
-    }
-
-    startFrom += timeInSecond;
-  }
+export interface TimelineData {
+  channel: string;
+  start: number;
+  segment: Segment;
 }
 
-export async function getTimeline(info: Info) {
-  const key = `${info.channel}/${info.resolution}/${info.start}`;
+const allSegments: Record<string, TimelineData[]> = {};
 
-  if (await cache.has(key)) {
-    const data = await cache.get<Timeline>(key);
+setInterval(() => {
+  const now = Date.now();
+  const ttl = 60000; // 1 minute
+
+  Object.values(allSegments).forEach((segments) => {
+    const firstSegment = segments.at(0);
+
+    if (!firstSegment) {
+      return;
+    }
+
+    if (firstSegment.start + ttl < now) {
+      segments.shift();
+    }
+  });
+}, 1000);
+
+export async function register(info: TimelineKey, segments: Segment[]) {
+  const key = info.channel;
+
+  for (const segment of segments) {
+    const start = info.start + Math.floor(segment.duration * 1000);
+    const data: TimelineData = {
+      channel: info.channel,
+      start,
+      segment,
+    };
 
     console.log(data);
+
+    if (!allSegments[key]) {
+      allSegments[key] = [];
+    }
+
+    allSegments[key].push(data);
+  }
+
+  allSegments[key]?.sort((a, b) => a.start - b.start);
+}
+
+export async function getTimeline(info: TimelineKey) {
+  const segments = allSegments[info.channel];
+
+  if (segments) {
+    const index = segments.findIndex((segment) => segment.start >= info.start);
+
+    if (index === -1) {
+      return;
+    }
+
+    const data = segments.at(index);
 
     return data;
   }
 
-  return {
-    name: "cd99ef2549fe8aa77a7c8c65485a7d9f615f7cc8ee8d0d944f6d98497633fe2c_720p0.ts",
-    time: 3,
-  };
+  return;
 }

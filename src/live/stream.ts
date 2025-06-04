@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
+
 import { get } from "./file.js";
 
-export async function stream(uri: string, _: Request, res: Response) {
+export default async function stream(uri: string, _: Request, res: Response) {
   try {
     // Download and cache the request
     const response = await get(uri);

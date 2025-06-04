@@ -1,5 +1,5 @@
-import controller from "./controller.js";
+import * as controllers from "./controllers/index.js";
 
 export default {
-  liveController: controller,
+  ...controllers,
 };

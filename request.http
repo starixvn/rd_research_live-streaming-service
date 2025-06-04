@@ -1,6 +1,23 @@
+### Get M3U8
+GET https://d1aof1lwumql9k.cloudfront.net/114_STAGING/0027ce5a8da81ea405b551ccaa7521432ea283ca495dacdcb41f4fd13136ce1b.m3u8
+
+
+###
 POST http://localhost:5000/114_STAGING
 Content-Type: application/json
 
 {
-    "playlist": "playlist.m3u8"
+    "playlist": "0027ce5a8da81ea405b551ccaa7521432ea283ca495dacdcb41f4fd13136ce1b"
 }
+
+###
+GET http://localhost:5000/114_STAGING/playlist.m3u8
+
+###
+GET http://localhost:5000/114_STAGING/240p.m3u8
+
+###
+GET http://localhost:5000/114_STAGING/720p.m3u8
+
+###
+GET http://localhost:5000/114_STAGING/720p_1748936126036.ts

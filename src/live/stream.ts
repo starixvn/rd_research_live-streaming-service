@@ -7,6 +7,12 @@ export default async function stream(uri: string, _: Request, res: Response) {
     // Download and cache the request
     const response = await get(uri);
 
+    if (!response) {
+      res.sendStatus(404);
+
+      return;
+    }
+
     // Set response headers
     response.headers.forEach(([key, value]) => {
       res.setHeader(key, value);

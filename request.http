@@ -3,7 +3,7 @@ GET https://d1aof1lwumql9k.cloudfront.net/114_STAGING/0027ce5a8da81ea405b551ccaa
 
 
 ###
-POST http://localhost:5000/114_STAGING
+POST http://localhost:5000/114_STAGING/abc
 Content-Type: application/json
 
 {
@@ -11,13 +11,32 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/114_STAGING/playlist.m3u8
+GET http://localhost:5000/114_STAGING/abc/playlist.m3u8
 
 ###
-GET http://localhost:5000/114_STAGING/240p.m3u8
+GET http://localhost:5000/114_STAGING/abc/240p.m3u8
 
 ###
-GET http://localhost:5000/114_STAGING/720p.m3u8
+GET http://localhost:5000/114_STAGING/abc/720p.m3u8
 
 ###
-GET http://localhost:5000/114_STAGING/720p_1748936126036.ts
+GET http://localhost:5000/114_STAGING/abc/720p_0.ts
+
+###
+POST http://localhost:5000/114_STAGING/xyz
+Content-Type: application/json
+
+{
+    "playlist": "0027ce5a8da81ea405b551ccaa7521432ea283ca495dacdcb41f4fd13136ce1b",
+    "limit": 2,
+    "offset": 0
+}
+
+###
+GET http://localhost:5000/114_STAGING/xyz/playlist.m3u8
+
+###
+GET http://localhost:5000/114_STAGING/xyz/240p.m3u8
+
+###
+GET http://localhost:5000/114_STAGING/xyz/720p.m3u8

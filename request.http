@@ -23,7 +23,7 @@ GET http://localhost:5000/114_STAGING/abc/720p.m3u8
 GET http://localhost:5000/114_STAGING/abc/720p_0.ts
 
 ###
-POST http://localhost:5000/114_STAGING/xyz
+POST http://localhost:5000/114_STAGING/goal1
 Content-Type: application/json
 
 {
@@ -33,10 +33,30 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/114_STAGING/xyz/playlist.m3u8
+GET http://localhost:5000/114_STAGING/goal1/playlist.m3u8
 
 ###
-GET http://localhost:5000/114_STAGING/xyz/240p.m3u8
+POST http://localhost:5000/114_STAGING/goal2
+Content-Type: application/json
+
+{
+    "playlist": "0027ce5a8da81ea405b551ccaa7521432ea283ca495dacdcb41f4fd13136ce1b",
+    "limit": 5,
+    "offset": 2
+}
 
 ###
-GET http://localhost:5000/114_STAGING/xyz/720p.m3u8
+GET http://localhost:5000/114_STAGING/goal2/playlist.m3u8
+
+###
+POST http://localhost:5000/114_STAGING/goal3
+Content-Type: application/json
+
+{
+    "playlist": "0027ce5a8da81ea405b551ccaa7521432ea283ca495dacdcb41f4fd13136ce1b",
+    "limit": 4,
+    "offset": 7
+}
+
+###
+GET http://localhost:5000/114_STAGING/goal3/playlist.m3u8

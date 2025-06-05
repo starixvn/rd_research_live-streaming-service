@@ -3,7 +3,7 @@ GET https://d1aof1lwumql9k.cloudfront.net/114_STAGING/0027ce5a8da81ea405b551ccaa
 
 
 ###
-POST http://localhost:5000/114_STAGING/abc
+POST {{host}}/114_STAGING/abc
 Content-Type: application/json
 
 {
@@ -11,19 +11,19 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/114_STAGING/abc/playlist.m3u8
+GET {{host}}/114_STAGING/abc/playlist.m3u8
 
 ###
-GET http://localhost:5000/114_STAGING/abc/240p.m3u8
+GET {{host}}/114_STAGING/abc/240p.m3u8
 
 ###
-GET http://localhost:5000/114_STAGING/abc/720p.m3u8
+GET {{host}}/114_STAGING/abc/720p.m3u8
 
 ###
-GET http://localhost:5000/114_STAGING/abc/720p_0.ts
+GET {{host}}/114_STAGING/abc/720p_0.ts
 
 ###
-POST http://localhost:5000/114_STAGING/goal1
+POST {{host}}/114_STAGING/goal1
 Content-Type: application/json
 
 {
@@ -33,10 +33,10 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/114_STAGING/goal1/playlist.m3u8
+GET {{host}}/114_STAGING/goal1/playlist.m3u8
 
 ###
-POST http://localhost:5000/114_STAGING/goal2
+POST {{host}}/114_STAGING/goal2
 Content-Type: application/json
 
 {
@@ -46,10 +46,10 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/114_STAGING/goal2/playlist.m3u8
+GET {{host}}/114_STAGING/goal2/playlist.m3u8
 
 ###
-POST http://localhost:5000/114_STAGING/goal3
+POST {{host}}/114_STAGING/goal3
 Content-Type: application/json
 
 {
@@ -59,4 +59,4 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/114_STAGING/goal3/playlist.m3u8
+GET {{host}}/114_STAGING/goal3/playlist.m3u8
